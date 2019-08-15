@@ -17,9 +17,16 @@ export class CategoriasService {
   }
 
   update(categoria: any, key: string) {
+    return this.categoriasRef.update(key, categoria);
   }
 
   getByKey(key: string) {
+    const path = 'categorias/' + key;
+    return this.db.object(path).snapshotChanges().pipe(
+      map(change => {
+        return ({ key: change.key, ...change.payload.val() });
+      })
+    );
   }
 
   getAll() {

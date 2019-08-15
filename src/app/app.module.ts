@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { ListaCategoriasComponent } from './categorias/lista-categorias/lista-ca
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { FormProdutosComponent } from './produtos/form-produtos/form-produtos.component';
+import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,11 +27,14 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     HomeLayoutComponent,
     LoginLayoutComponent,
     FormCategoriasComponent,
-    ListaCategoriasComponent
+    ListaCategoriasComponent,
+    FormProdutosComponent,
+    ListaProdutosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
