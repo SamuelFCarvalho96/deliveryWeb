@@ -1,3 +1,5 @@
+import { FormProdutosComponent } from './produtos/form-produtos/form-produtos.component';
+import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
@@ -14,7 +16,10 @@ const routes: Routes = [
      { path: 'dashboard', component: DashboardComponent},
      { path: 'categorias', component: ListaCategoriasComponent},
      { path: 'categorias/nova', component: FormCategoriasComponent},
-     { path: 'categorias/editar/:key', component: FormCategoriasComponent}
+     { path: 'categorias/editar/:key', component: FormCategoriasComponent},
+     { path: 'produtos', component: ListaProdutosComponent},
+     { path: 'produtos/novo', component: FormProdutosComponent},
+     { path: 'produtos/editar/:key', component: FormProdutosComponent},
    ]
  }
 ];
