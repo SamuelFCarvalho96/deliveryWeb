@@ -20,6 +20,9 @@ export class ListaProdutosComponent implements OnInit {
 
   remover(key: string) {
     this.produtosService.Excluir(key)
+    .then( (mensagem ) => {
+      this.toastr.success('Excluido com sucesso!');
+    })
     .catch((mensagem: string) => {
      this.toastr.error(mensagem);
     });
