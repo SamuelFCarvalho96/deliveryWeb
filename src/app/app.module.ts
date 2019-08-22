@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { FooterComponent } from './core/footer/footer.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { DashboardComponent } from './core/dashboard/dashboard.component';
 import { HomeLayoutComponent } from './layout/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
@@ -38,6 +39,7 @@ import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     AngularFireDatabaseModule,
     ToastrModule.forRoot()
   ],
