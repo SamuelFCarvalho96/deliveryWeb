@@ -7,11 +7,12 @@ import { AngularFireStorage } from '@angular/fire/storage';
   providedIn: 'root'
 })
 export class ProdutosService {
-  produtosRef: AngularFireList<any>;
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) {
     this.produtosRef = this.db.list('produtos/');
   }
+  produtosRef: AngularFireList<any>;
+
 
   inserir(produto: any) {
     // return this.produtosRef.push(produto);

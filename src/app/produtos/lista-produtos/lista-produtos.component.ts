@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ProdutosService } from '../shared/produtos.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lista-produtos',
@@ -10,21 +9,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListaProdutosComponent implements OnInit {
   produtos: Observable<any[]>;
-  ProdutosService: any;
+  produtoService: any;
 
-  constructor(private produtosService: ProdutosService, private toastr: ToastrService) { }
+  constructor(private produtosService: ProdutosService ) { }
 
   ngOnInit() {
     this.produtos = this.produtosService.TrazerTudo();
   }
 
-  remover(key: string) {
-    this.produtosService.Excluir(key)
-    .then( (mensagem ) => {
-      this.toastr.success('Excluido com sucesso!');
-    })
-    .catch((mensagem: string) => {
-     this.toastr.error(mensagem);
-    });
+  remover(key: string, filePath: string) {
+    this.produtosService.Excluir (key, filePath);
   }
 }

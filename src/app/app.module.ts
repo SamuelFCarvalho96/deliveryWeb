@@ -15,10 +15,14 @@ import { LoginLayoutComponent } from './layout/login-layout/login-layout.compone
 import { FormCategoriasComponent } from './categorias/form-categorias/form-categorias.component';
 import { ListaCategoriasComponent } from './categorias/lista-categorias/lista-categorias.component';
 import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 import { FormProdutosComponent } from './produtos/form-produtos/form-produtos.component';
 import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos.component';
+import { CriarContaComponent } from './usuarios/criar-conta/criar-conta.component';
+import { LoginComponent } from './usuarios/login/login.component';
+import { EsqueciSenhaComponent } from './usuarios/esqueci-senha/esqueci-senha.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,10 @@ import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos
     FormCategoriasComponent,
     ListaCategoriasComponent,
     FormProdutosComponent,
-    ListaProdutosComponent
+    ListaProdutosComponent,
+    CriarContaComponent,
+    LoginComponent,
+    EsqueciSenhaComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +47,7 @@ import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
+    AngularFireAuthModule,
     AngularFireDatabaseModule,
     ToastrModule.forRoot()
   ],

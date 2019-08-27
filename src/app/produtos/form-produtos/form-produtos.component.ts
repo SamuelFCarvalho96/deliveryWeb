@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./form-produtos.component.css']
 })
 export class FormProdutosComponent implements OnInit {
-
   formProduto: FormGroup;
   key: string;
   categorias: Observable<any[]>;
@@ -20,6 +19,7 @@ export class FormProdutosComponent implements OnInit {
   private file: File = null;
   imgUrl = '';
   filePath = '';
+  result: void;
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
@@ -28,39 +28,47 @@ export class FormProdutosComponent implements OnInit {
               private toastr: ToastrService,
               private router: Router
                   ) { }
+
   ngOnInit() {
     this.criarFormulario();
     this.categorias = this.categoriasService.getAll();
 
     this.key = this.route.snapshot.paramMap.get('key');
     if (this.key) {
-      const subscribe = this.produtosService.TrazerPelaChave(this.key).subscribe((produtos: any) => {
+      const subscribe = this.produtosService.TrazerPelaChave(this.key)
+      .subscribe((produtos: any) => {
 
         subscribe.unsubscribe();
-        this.formProduto.setValue({nome: produtos.nome,
+        this.formProduto.setValue({
+            nome: produtos.nome,
             descricao: produtos.descricao,
             preco: produtos.preco,
             categoriaKey: produtos.categoriaKey,
-            categoriaNome: produtos.categoriaNome
+            categoriaNome: produtos.categoriaNome,
+            img: ''
           });
 
       this.imgUrl = produtos.img || '';
       this.filePath = produtos.filePath || '';
+
         });
      }
+
   }
 
   get nome() { return this.formProduto.get('nome'); }
   get descricao () { return this.formProduto.get('descricao'); }
+  get preco() { return this.formProduto.get('preco'); }
   get categoriaKey() { return this.formProduto.get('categoriaKey'); }
   get categoriaNome() { return this.formProduto.get('categoriaNome'); }
+
 
   criarFormulario() {
     this.key = null;
     this.formProduto = this.formBuilder.group({
      nome: ['', Validators.required],
      descricao: [''],
-     preco: [''],
+     preco: ['', Validators.required],
      categoriaKey: ['', Validators.required],
      categoriaNome: [''],
      img: ['']
@@ -71,9 +79,10 @@ export class FormProdutosComponent implements OnInit {
     this.filePath = '';
   }
 
-  setCategoriaNome(categoria: any) {
-    if (this.categorias && this.formProduto.value.categoriaKey) {
-      const categoriaNome = this.categorias[0].text;
+
+  setCategoriaNome(categorias: any) {
+    if (categorias && this.formProduto.value.categoriaKey) {
+      const categoriaNome = categorias[0].text;
       this.categoriaNome.setValue(categoriaNome);
     } else {
       this.categoriaNome.setValue('');
@@ -87,8 +96,7 @@ export class FormProdutosComponent implements OnInit {
       this.file = null;
     }
   }
-
-  removeImg() {
+  removerImg() {
     this.produtosService.removeImg(this.filePath, this.key);
     this.imgUrl = '';
     this.filePath = '';
@@ -96,13 +104,25 @@ export class FormProdutosComponent implements OnInit {
 
   onSubmit() {
     if (this.formProduto.valid) {
+      let result: Promise<{}>;
+
       if (this.key) {
-        this.produtosService.Editar(this.formProduto.value, this.key);
+        result = this.produtosService.Editar(this.formProduto.value, this.key);
       } else {
-        this.produtosService.inserir(this.formProduto.value);
+        result = this.produtosService.inserir(this.formProduto.value);
       }
-       this.router.navigate (['produtos']);
-      this.toastr.success('Produto salvo com sucesso!!!');
+
+      if (this.file) {
+        result.then( (key: string) => {
+          this.produtosService.uploadImg(key, this.file);
+          this.criarFormulario();
+        });
+      } else {
+        this.criarFormulario();
+      }
+
+      this.router.navigate(['produtos']);
+      this.toastr.success('Produtos salvo com sucesso!!!');
     }
   }
 
