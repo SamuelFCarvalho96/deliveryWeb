@@ -10,12 +10,13 @@ import { LoginLayoutComponent } from './layout/login-layout/login-layout.compone
 import { LoginComponent } from './usuarios/login/login.component';
 import { CriarContaComponent } from './usuarios/criar-conta/criar-conta.component';
 import { EsqueciSenhaComponent } from './usuarios/esqueci-senha/esqueci-senha.component';
+import { AuthGuard } from './usuarios/shared/auth.guard';
 
 const routes: Routes = [
  {
    path: '',
    component: HomeLayoutComponent,
-   canActivate: [],
+   canActivate: [AuthGuard],
    children: [
      { path: 'dashboard', component: DashboardComponent},
      { path: 'categorias', component: ListaCategoriasComponent},
@@ -24,8 +25,12 @@ const routes: Routes = [
      { path: 'produtos', component: ListaProdutosComponent},
      { path: 'produtos/novo', component: FormProdutosComponent},
      { path: 'produtos/editar/:key', component: FormProdutosComponent},
+     { path: '', redirectTo: '/dashboard', pathMatch: 'full'}
+
    ]
  },
+
+
  {
   path: '',
   component: LoginLayoutComponent,
@@ -34,7 +39,9 @@ const routes: Routes = [
     { path: 'criar-conta', component:  CriarContaComponent},
     { path: 'esqueci-senha', component:  EsqueciSenhaComponent}
   ]
-}
+},
+{ path: '**', redirectTo: ''}
+
 ];
 
 @NgModule({
