@@ -16,6 +16,9 @@ const routes: Routes = [
  {
    path: '',
    component: HomeLayoutComponent,
+
+   // Linha 22 : AuthGuard serve para guardar as rotas
+
    canActivate: [AuthGuard],
    children: [
      { path: 'dashboard', component: DashboardComponent},
@@ -25,12 +28,13 @@ const routes: Routes = [
      { path: 'produtos', component: ListaProdutosComponent},
      { path: 'produtos/novo', component: FormProdutosComponent},
      { path: 'produtos/editar/:key', component: FormProdutosComponent},
+
+     // Linha 34: Rota vazia,redireciona para rota desejada
+
      { path: '', redirectTo: '/dashboard', pathMatch: 'full'}
 
    ]
  },
-
-
  {
   path: '',
   component: LoginLayoutComponent,

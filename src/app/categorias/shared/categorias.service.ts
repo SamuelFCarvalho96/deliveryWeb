@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators';
 export class CategoriasService {
   categoriasRef: AngularFireList<any>;
 
+  // Linha 14 : Serve para indicar o caminho do banco
+
   constructor(private db: AngularFireDatabase) {
     this.categoriasRef = this.db.list('categorias/');
   }

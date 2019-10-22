@@ -13,6 +13,8 @@ export class FormCategoriasComponent implements OnInit {
 formCategoria: FormGroup;
 key: string;
 
+// Linha 18 : Carregar todas as variáveis
+
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private categoriasService: CategoriasService,
@@ -20,11 +22,18 @@ key: string;
               private router: Router
                   ) { }
 
+  // Linha 27 : Serve para a primeira ação à se fazer
+
   ngOnInit() {
     this.criarFormulario();
     this.key = this.route.snapshot.paramMap.get('key');
     if (this.key) {
+
+      // Subscribe significa "escutar" e Unsubscribe significa "pare de escutar"
+
       const categoriaSubscribe = this.categoriasService.getByKey(this.key).subscribe((categorias: any) => {
+
+   // Linha 36: SetValue é o que mostra na tela
 
         categoriaSubscribe.unsubscribe();
         this.formCategoria.setValue({nome: categorias.nome, descricao: categorias.descricao});
@@ -42,6 +51,7 @@ key: string;
      descricao: [''],
     });
   }
+  // Linha 55 e 57 : Value trás os valores dos campos declarados no Validators (Linha 47)
     onSubmit() {
       if (this.formCategoria.valid) {
         if (this.key) {

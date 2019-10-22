@@ -16,6 +16,7 @@
         </tr>
       </thead>
       <tbody>
+        <!-- ngfor é um laço de repetição que faz com que os dados do banco seja exibido no HTML -->
         <tr *ngFor="let categoria of categorias | async" >
           <!-- <th scope="row">{{categoria.key}}</th> -->
           <td>{{ categoria.nome }}</td>

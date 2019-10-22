@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./lista-categorias.component.css']
 })
 export class ListaCategoriasComponent implements OnInit {
+  // Linha 13 : Observable é uma tipagem para receber um array
   categorias: Observable<any[]>;
 
   constructor(private categoriasService: CategoriasService, private toastr: ToastrService) { }
