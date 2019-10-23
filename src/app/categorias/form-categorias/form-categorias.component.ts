@@ -44,6 +44,8 @@ key: string;
   get nome() { return this.formCategoria.get('nome'); }
   get descricao () { return this.formCategoria.get('descricao'); }
 
+  // Método de criação de formulário
+
   criarFormulario() {
     this.key = null;
     this.formCategoria = this.formBuilder.group({
@@ -51,7 +53,7 @@ key: string;
      descricao: [''],
     });
   }
-  // Linha 55 e 57 : Value trás os valores dos campos declarados no Validators (Linha 47)
+  // Linha 57 : Value trás os valores dos campos declarados no Validators (Linha 50)
     onSubmit() {
       if (this.formCategoria.valid) {
         if (this.key) {
