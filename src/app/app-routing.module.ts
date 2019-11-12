@@ -1,3 +1,4 @@
+import { DetalhePedidoComponent } from './pedidos/detalhe-pedido/detalhe-pedido.component';
 import { FormProdutosComponent } from './produtos/form-produtos/form-produtos.component';
 import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos.component';
 import { NgModule } from '@angular/core';
@@ -11,6 +12,7 @@ import { LoginComponent } from './usuarios/login/login.component';
 import { CriarContaComponent } from './usuarios/criar-conta/criar-conta.component';
 import { EsqueciSenhaComponent } from './usuarios/esqueci-senha/esqueci-senha.component';
 import { AuthGuard } from './usuarios/shared/auth.guard';
+import { ListaPedidosComponent } from './pedidos/lista-pedidos/lista-pedidos.component';
 
 const routes: Routes = [
  {
@@ -22,6 +24,11 @@ const routes: Routes = [
    canActivate: [AuthGuard],
    children: [
      { path: 'dashboard', component: DashboardComponent},
+
+     { path: 'pedidos', component: ListaPedidosComponent},
+     { path: 'pedidos/detalhe/:key', component: DetalhePedidoComponent},
+
+
      { path: 'categorias', component: ListaCategoriasComponent},
      { path: 'categorias/nova', component: FormCategoriasComponent},
      { path: 'categorias/editar/:key', component: FormCategoriasComponent},

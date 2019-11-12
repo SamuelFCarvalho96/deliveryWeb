@@ -1,9 +1,9 @@
 export const firebaseconfig = {
-  apiKey: 'AIzaSyA4qbCu1TJcRO0Bpwdfgbl7SXdKOu3isW0',
-    authDomain: 'appguitarshop.firebaseapp.com',
-    databaseURL: 'https://appguitarshop.firebaseio.com',
-    projectId: 'appguitarshop',
-    storageBucket: 'appguitarshop.appspot.com',
-    messagingSenderId: '170013665116',
-    appId: '1:170013665116:web:8b8c20d0a2ea6ef3b00399'
+  apiKey: "AIzaSyBoLWHi1UmX4lc1eGYytmvLSpeTPEjPor4",
+    authDomain: "delivery-samu.firebaseapp.com",
+    databaseURL: "https://delivery-samu.firebaseio.com",
+    projectId: "delivery-samu",
+    storageBucket: "delivery-samu.appspot.com",
+    messagingSenderId: "542392190238",
+    appId: "1:542392190238:web:305c7c057a12b6f4"
 };

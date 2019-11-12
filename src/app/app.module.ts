@@ -23,6 +23,8 @@ import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos
 import { CriarContaComponent } from './usuarios/criar-conta/criar-conta.component';
 import { LoginComponent } from './usuarios/login/login.component';
 import { EsqueciSenhaComponent } from './usuarios/esqueci-senha/esqueci-senha.component';
+import { ListaPedidosComponent } from './pedidos/lista-pedidos/lista-pedidos.component';
+import { DetalhePedidoComponent } from './pedidos/detalhe-pedido/detalhe-pedido.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,9 @@ import { EsqueciSenhaComponent } from './usuarios/esqueci-senha/esqueci-senha.co
     ListaProdutosComponent,
     CriarContaComponent,
     LoginComponent,
-    EsqueciSenhaComponent
+    EsqueciSenhaComponent,
+    ListaPedidosComponent,
+    DetalhePedidoComponent
   ],
   imports: [
     BrowserModule,
